@@ -1,0 +1,326 @@
+/* Geral */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    transition: 0.4s;
+}
+
+
+
+/* Título da Empresa */
+
+h1 {
+    position: absolute; /* Define uma posição absoluta em relação ao contêiner pai */
+    top: 15px;
+    left: 20px;
+    border: 1px solid black;
+    border-radius: 7px;
+    width: 225px;
+    text-align: center;
+    padding: 3px;
+    font-size: 3.0ch;
+}
+
+/* Título do Programa */
+
+h2 {
+    position: relative; /* Mantém o fluxo normal */
+    margin:10px auto 10px auto; /* Define o espaçamento abaixo */
+    left: 0; /* Remove o alinhamento absoluto */
+    top: 0; /* Remove a fixação ao topo */
+    transform: none; /* Remove transformações */
+    text-align: center;
+    width: fit-content; /* Ajusta a largura ao conteúdo */
+    border: 1px solid black;
+    padding: 5px 60px;
+    border-radius: 7px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    font-size: 3.7ch;
+}
+
+
+/* Navbar */
+
+.navbar {
+    position: absolute; /* Fixa no canto da página */
+    left: 20px; /* Fixa à esquerda */
+    top: 70px; /* Define o distanciamento do topo */
+    width: 204px; /* Define a largura da barra */
+    background-color: #c0bbbb; /* Cor de fundo da barra */
+    padding: 15px; /* Espaçamento interno da barra */
+    border-radius: 7px; /* Arredonda as bordas*/
+    height: 132vh; /* Faz a barra de fundo ocupar toda a altura da página */
+}
+
+.navbar li {
+    margin-bottom: 20px; /* Espaçamento entre os itens */
+}
+
+.navbar a {
+    display: block; /* Faz o link ocupar toda a largura do item */
+    color: white; /* Define a cor do texto */
+    background-color: #095fbb; /* Define a cor de fundo dos "botões" */
+    padding: 10px; /* Espaçamento interno dos "botões" */
+    border-radius: 5px; /* Arredonda as bordas dos "botões" */
+    text-align: center; /* Centraliza o texto dentro dos "botões" */
+}
+
+.navbar a:hover {
+    background-color: #1d74d1; /* Nova cor ao passar o mouse */
+}
+
+
+/* Formulário Cadastro de Aluno Novo */
+
+h3 {
+    font-size: 2.5ch;
+
+}
+
+.newstudent_register {
+    position: absolute; /* Define uma posição absoluta em relação ao contêiner pai */
+    top: 70px;
+    left: 290px;
+}
+
+
+/*  */
+
+/* Informações do aluno */
+
+.student_informations {
+    display: flex; /* Ativa o Flexbox */
+    flex-direction: column; /* Empilha os elementos verticalmente */
+    gap: 10px; /* Espaçamento entre as seções */
+    width: 100%; /* Define largura máxima do contêiner */
+    padding: 20px; /* Adiciona espaçamento interno */
+    border: 1px solid black; /* Adiciona uma borda */
+    border-radius: 10px; /* Bordas arredondadas */
+    background-color: #f9f9f9; /* Fundo leve */
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+    /* Estilo do título */
+    .student_informations h3 {
+        margin-bottom: 10px; /* Espaçamento abaixo do título */
+    }
+
+    /* Contêiner para cada linha com dois elementos */
+.student_informations div {
+    display: flex; /* Usa Flexbox para posicionar os itens lado a lado */
+    justify-content: space-between; /* Espaçamento entre os campos */
+    align-items: center; /* Alinha os itens verticalmente */
+    gap: 10px; /* Espaçamento entre os campos na mesma linha */
+}
+
+    /* Estilo dos inputs e selects */
+.student_informations input,
+.student_informations select {
+    flex: 1; /* Faz os campos ocuparem o mesmo espaço */
+    padding: 5px; /* Espaçamento interno */
+    border: 1px solid #201d1dbb; /* Borda dos campos */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 0.8rem; /* Tamanho da fonte */
+}
+
+
+/*  */
+
+/* Informações do Material Didático */
+
+.book_information {
+    display: flex; /* Ativa o Flexbox */
+    flex-direction: column; /* Empilha os elementos verticalmente */
+    gap: 10px; /* Espaçamento entre as seções */
+    width: 100%; /* Define largura máxima do contêiner */
+    padding: 20px; /* Adiciona espaçamento interno */
+    border: 1px solid black; /* Adiciona uma borda */
+    border-radius: 10px; /* Bordas arredondadas */
+    background-color: #f9f9f9; /* Fundo leve */
+    margin-bottom: 5px;
+}
+
+    /* Estilo do título */
+    .book_information h3 {
+        margin-bottom: 10px; /* Espaçamento abaixo do título */
+    }
+
+    /* Contêiner para cada linha com dois elementos */
+.book_information div {
+display: flex; /* Usa Flexbox para posicionar os itens lado a lado */
+justify-content: space-between; /* Espaçamento entre os campos */
+align-items: center; /* Alinha os itens verticalmente */
+gap: 10px; /* Espaçamento entre os campos na mesma linha */
+}
+
+    /* Estilo dos inputs e selects */
+.book_information input,
+.book_information select {
+flex: 1; /* Faz os campos ocuparem o mesmo espaço */
+padding: 5px; /* Espaçamento interno */
+border: 1px solid #201d1dbb; /* Borda dos campos */
+border-radius: 5px; /* Bordas arredondadas */
+font-size: 0.8rem; /* Tamanho da fonte */
+}
+
+
+/*  */
+
+/* Informações do Módulo de Aulas */
+
+.classModule_information {
+    display: flex; /* Ativa o Flexbox */
+    flex-direction: column; /* Empilha os elementos verticalmente */
+    gap: 10px; /* Espaçamento entre as seções */
+    width: 100%; /* Define largura máxima do contêiner */
+    padding: 20px; /* Adiciona espaçamento interno */
+    border: 1px solid black; /* Adiciona uma borda */
+    border-radius: 10px; /* Bordas arredondadas */
+    background-color: #f9f9f9; /* Fundo leve */
+    margin-bottom: 5px;
+}
+
+    /* Estilo do título */
+.classModule_information h3 {
+        margin-bottom: 10px; /* Espaçamento abaixo do título */
+}
+
+    /* Contêiner para cada linha com dois elementos */
+.classModule_information div {
+display: flex; /* Usa Flexbox para posicionar os itens lado a lado */
+justify-content: space-between; /* Espaçamento entre os campos */
+align-items: center; /* Alinha os itens verticalmente */
+gap: 10px; /* Espaçamento entre os campos na mesma linha */
+}
+
+    /* Estilo dos inputs e selects */
+.classModule_information input,
+.classModule_information select {
+flex: 1; /* Faz os campos ocuparem o mesmo espaço */
+padding: 5px; /* Espaçamento interno */
+border: 1px solid #201d1dbb; /* Borda dos campos */
+border-radius: 5px; /* Bordas arredondadas */
+font-size: 0.8rem; /* Tamanho da fonte */
+}
+
+
+/*  */
+
+/* Informações Taxa de Matrícula */
+.taxRegistration_information {
+    display: flex; /* Ativa o Flexbox */
+    flex-direction: column; /* Empilha os elementos verticalmente */
+    gap: 10px; /* Espaçamento entre as seções */
+    width: 100%; /* Define largura máxima do contêiner */
+    padding: 20px; /* Adiciona espaçamento interno */
+    border: 1px solid black; /* Adiciona uma borda */
+    border-radius: 10px; /* Bordas arredondadas */
+    background-color: #f9f9f9; /* Fundo leve */
+    margin-bottom: 5px;
+}
+
+    /* Estilo do título */
+.taxRegistration_information h3 {
+        margin-bottom: 10px; /* Espaçamento abaixo do título */
+}
+
+    /* Contêiner para cada linha com dois elementos */
+.taxRegistration_information div {
+display: flex; /* Usa Flexbox para posicionar os itens lado a lado */
+justify-content: space-between; /* Espaçamento entre os campos */
+align-items: center; /* Alinha os itens verticalmente */
+gap: 10px; /* Espaçamento entre os campos na mesma linha */
+}
+
+    /* Estilo dos inputs e selects */
+.taxRegistration_information input,
+.taxRegistration_information select {
+flex: 1; /* Faz os campos ocuparem o mesmo espaço */
+padding: 5px; /* Espaçamento interno */
+border: 1px solid #201d1dbb; /* Borda dos campos */
+border-radius: 5px; /* Bordas arredondadas */
+font-size: 0.8rem; /* Tamanho da fonte */
+}
+
+
+/* Informações Wiz Pen */
+.wizPen_information {
+    display: flex; /* Ativa o Flexbox */
+    flex-direction: column; /* Empilha os elementos verticalmente */
+    gap: 10px; /* Espaçamento entre as seções */
+    width: 100%; /* Define largura máxima do contêiner */
+    padding: 20px; /* Adiciona espaçamento interno */
+    border: 1px solid black; /* Adiciona uma borda */
+    border-radius: 10px; /* Bordas arredondadas */
+    background-color: #f9f9f9; /* Fundo leve */
+    margin-bottom: 5px;
+}
+
+    /* Estilo do título */
+.wizPen_information h3 {
+        margin-bottom: 10px; /* Espaçamento abaixo do título */
+}
+
+    /* Contêiner para cada linha com dois elementos */
+.wizPen_information div {
+display: flex; /* Usa Flexbox para posicionar os itens lado a lado */
+justify-content: space-between; /* Espaçamento entre os campos */
+align-items: center; /* Alinha os itens verticalmente */
+gap: 10px; /* Espaçamento entre os campos na mesma linha */
+}
+
+    /* Estilo dos inputs e selects */
+.wizPen_information input,
+.wizPen_information select {
+flex: 1; /* Faz os campos ocuparem o mesmo espaço */
+padding: 5px; /* Espaçamento interno */
+border: 1px solid #201d1dbb; /* Borda dos campos */
+border-radius: 5px; /* Bordas arredondadas */
+font-size: 0.8rem; /* Tamanho da fonte */
+}
+
+
+/*  */
+/*  */
+
+/* Design dos Botões de Cadastrar e Limpar Formulário */
+.newstudent_register input[type="submit"],
+.newstudent_register input[type="reset"] {
+    display: inline-block; /* Mantém os botões alinhados */
+    background-color: #095fbb; /* Cor de fundo principal */
+    color: white; /* Cor do texto */
+    font-size: 0.9rem; /* Tamanho da fonte */
+    font-weight: bold; /* Texto em negrito */
+    padding: 10px 20px; /* Espaçamento interno */
+    border: none; /* Remove bordas padrão */
+    border-radius: 7px; /* Bordas arredondadas */
+    cursor: pointer; /* Muda o cursor para uma mãozinha */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Animações suaves */
+    margin: 10px 30px; /* Espaçamento entre os botões */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
+}
+
+/* Estilo ao passar o mouse */
+.newstudent_register input[type="submit"]:hover,
+.newstudent_register input[type="reset"]:hover {
+    background-color: #1d74d1; /* Cor ao passar o mouse */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); /* Realça a sombra */
+}
+
+/* Estilo ao clicar */
+.newstudent_register input[type="submit"]:active,
+.newstudent_register input[type="reset"]:active {
+    background-color: #083b8a; /* Cor mais escura ao clicar */
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra interna */
+}

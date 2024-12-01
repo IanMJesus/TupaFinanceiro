@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferramenta de Controle Financeiro</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <h1>Tupã Company</h1>
+    
+    <h2>Ferramenta de Controle Financeiro</h2>
+
+<!-- Menu de Navegação -->
+   <nav class = "navbar">
+        <ul>
+            <li><a href="#">Cadastro de Novos Alunos</a></li>
+            <li><a href="#">Renovação de Matrícula</a></li>
+            <li><a href="#">Lista de Alunos</a></li>
+            <li><a href="#">Gráficos</a></li>
+        </ul>     
+   </nav>
+
+<!-- Entrada de Dados - Cadastro de Novos Alunos -->
+    <form class="newstudent_register">
+        
+        <!-- Informações Iniciais do Aluno -->
+        <div class="student_informations">
+        <h3>Informações do Aluno</h3>
+            <div>
+                <div class="student_informations1">
+                    <label for="name">Nome do Aluno:</label>
+                    <input type="text" name="name"/>
+                </div>
+                <div>
+                    <label for="register_number">Número de Matrícula:</label>
+                    <input type="number" name="register_number"/>
+                </div>
+            </div>
+
+            <div class="student_informations2">
+                <div>
+                    <label for="financial_responser">Responsável Financeiro:</label>
+                    <input type="text" name="financial_responser"/>
+                </div>
+                <div>
+                    <label for="unity">Unidade:</label>
+                    <select name="unity">
+                        <option value="padua">Santo Antônio de Pádua</option>
+                        <option value="miracema">Miracema</option>
+                        <option value="pirapetinga">Pirapetinga</option>
+                    </select>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Informações Material Didático do Aluno -->
+        <div class="book_information">
+        <h3>Material Didático</h3>   
+            <div>
+                <div class="book_information1">
+                    <label for="book_name">Material Didático:</label>
+                    <input type="text" name="book_name"/>
+                </div>
+                <div>
+                    <label for="book_price">Valor do Material:</label>
+                    <input type="number" name="book_price"/>
+                </div>
+            </div>
+            
+            <div class="book_information2">
+                <div>
+                    <label for="installment_book">Quantidade de Parcelas Material:</label>
+                    <input type="number" name="installment_book"/>
+                </div>
+                <div>
+                    <label for="book_paymentMethod">Forma de Pagamento do Material:</label>
+                    <select name="book_paymentMethod">
+                        <option value="credit_card_book">Cartão de Crédito</option>
+                        <option value="debit_card_book">Cartão de Débito</option>
+                        <option value="ticket_book">Boleto</option>
+                    </select>
+                </div>
+            </div>
+            <div class="book_information3">
+                <div>
+                    <label for="book_paymentDate">Data de Início do Pagamento do Material:</label>
+                    <input type="date" name="book_paymentDate"/>
+                </div>
+            </div>           
+                       
+        </div>
+
+        <!-- Informações Módulo de Aulas do Aluno -->
+        <div class="classModule_information">
+        <h3>Módulo de Aulas</h3>
+            <div class="classModule_information1">
+                <div>
+                    <label for="class_price">Valor do Módulo:</label>
+                    <input type="number" name="class_price"/>
+                </div>
+                <div>
+                    <label for="installment_class">Quantidade de Parcelas Módulo:</label>
+                    <input type="number" name="installment_class"/>
+                </div>
+            </div>
+            <div>
+                <div class="classModule_information2">
+                    <label for="class_paymentMethod">Forma de Pagamento do Módulo:</label>
+                    <select name="class_paymentMethod">
+                        <option value="credit_card_class">Cartão de Crédito</option>
+                        <option value="debit_card_class">Cartão de Débito</option>
+                        <option value="ticket_class">Boleto</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="class_paymentDate">Data de Início do Pagamento do Módulo:</label>
+                    <input type="date" name="class_paymentDate"/>
+                </div>
+            </div>
+        </div>
+
+        <!-- Informações Taxa de Matrícula do Aluno -->
+        <div class="taxRegistration_information">
+        <h3>Taxa de Matrícula</h3>
+            <div class="taxRegistration_information1">
+                <div>
+                    <label for="tax_price">Valor do Taxa de Matrícula:</label>
+                    <input type="number" name="tax_price"/>
+                </div>
+                <div>
+                    <label for="tax_paymentMethod">Forma de Pagamento da Taxa de Matrícula:</label>
+                    <select name="tax_paymentMethod">
+                        <option value="credit_card_tax">Cartão de Crédito</option>
+                        <option value="debit_card_tax">Cartão de Débito</option>
+                        <option value="ticket_tax">Boleto</option>
+                    </select>
+                </div>
+            </div>
+            <div class="taxRegistration_information2">
+                <div>
+                    <label for="tax_paymentDate">Data de Pagamento da Taxa de Matrícula:</label>
+                    <input type="date" name="tax_paymentDate"/>
+                </div>
+            </div>            
+        </div>
+        
+        <!-- Informações WizPen -->
+        <div class="wizPen_information">
+        <h3>WizPen</h3>
+            <div class="wizPen_information1">
+                <div>
+                    <label for="wizPen_price">Valor da WizPen:</label>
+                    <input type="number" name="wizPen_price"/>
+                </div>
+                <div>
+                    <label for="wizPen_paymentMethod">Forma de Pagamento da WizPen:</label>
+                    <select name="wizPen_paymentMethod">
+                        <option value="credit_card_tax">Cartão de Crédito</option>
+                        <option value="debit_card_tax">Cartão de Débito</option>
+                        <option value="ticket_tax">Boleto</option>
+                    </select>
+                </div>
+            </div>
+            <div class="wizPen_information2">
+                <div>
+                    <label for="wizPen_paymentDate">Data de Pagamento da WizPen:</label>
+                    <input type="date" name="wizPen_paymentDate"/>
+                </div>
+            </div>          
+        </div>
+
+        <!-- Botões -->
+        <div>
+            <input type="submit" value="Cadastrar">
+            <input type="reset" value="Limpar Formulário">
+        </div>  
+    </form>
+
+</body>
+</html>
