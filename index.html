@@ -10,15 +10,16 @@
     
     <h1>Tupã Company</h1>
     
-    <h2>Ferramenta de Controle Financeiro</h2>
+    <h2>Cadastro de Alunos</h2>
 
 <!-- Menu de Navegação -->
    <nav class = "navbar">
         <ul>
-            <li><a href="#">Cadastro de Novos Alunos</a></li>
-            <li><a href="#">Renovação de Matrícula</a></li>
-            <li><a href="#">Lista de Alunos</a></li>
-            <li><a href="#">Gráficos</a></li>
+            <li><a href="http://127.0.0.1:5500/index.html#">Cadastro de Alunos</a></li>
+            <li><a href="http://127.0.0.1:5500/lista_alunos.html">Lista de Alunos</a></li>
+            <li><a href="http://127.0.0.1:5500/informacoes.html">Informações Financeiras</a></li>
+            <li><a href="http://127.0.0.1:5500/cadastro_faturamento.html">Cadastro de Faturamento</a></li>
+            <li><a href="http://127.0.0.1:5500/lista_faturamento.html">Lista de Faturamento</a></li>
         </ul>     
    </nav>
 
@@ -35,7 +36,7 @@
                 </div>
                 <div>
                     <label for="register_number">Número de Matrícula:</label>
-                    <input type="number" name="register_number" id="register_number/>
+                    <input type="number" name="register_number" id="register_number"/>
                 </div>
             </div>
 
@@ -47,9 +48,9 @@
                 <div>
                     <label for="unity">Unidade:</label>
                     <select name="unity" id="unity">
-                        <option value="padua">Santo Antônio de Pádua</option>
-                        <option value="miracema">Miracema</option>
-                        <option value="pirapetinga">Pirapetinga</option>
+                        <option value="Padua">Santo Antônio de Pádua</option>
+                        <option value="Miracema">Miracema</option>
+                        <option value="Pirapetinga">Pirapetinga</option>
                     </select>
                 </div>
             </div>
@@ -79,9 +80,9 @@
                     <label for="book_paymentMethod">Forma de Pagamento do Material:</label>
                     <select name="book_paymentMethod" id="book_paymentMethod">
                         <option value="credit_card_book">Cartão de Crédito</option>
-                        <option value="debit_card_book">Cartão de Débito</option>
                         <option value="ticket_book">Boleto</option>
                         <option value="pix_book">Pix</option>
+                        <option value="money_book">Dinheiro</option>
                     </select>
                 </div>
             </div>
@@ -112,9 +113,9 @@
                     <label for="class_paymentMethod">Forma de Pagamento do Módulo:</label>
                     <select name="class_paymentMethod" id="class_paymentMethod">
                         <option value="credit_card_class">Cartão de Crédito</option>
-                        <option value="debit_card_class">Cartão de Débito</option>
                         <option value="ticket_class">Boleto</option>
                         <option value="pix_class">Pix</option>
+                        <option value="money_class">Dinheiro</option>
                     </select>
                 </div>
                 <div>
@@ -136,9 +137,9 @@
                     <label for="tax_paymentMethod">Forma de Pagamento da Taxa de Matrícula:</label>
                     <select name="tax_paymentMethod" id="tax_paymentMethod">
                         <option value="credit_card_tax">Cartão de Crédito</option>
-                        <option value="debit_card_tax">Cartão de Débito</option>
                         <option value="ticket_tax">Boleto</option>
                         <option value="pix_tax">Pix</option>
+                        <option value="money_tax">Dinheiro</option>
                     </select>
                 </div>
             </div>
@@ -147,33 +148,11 @@
                     <label for="tax_paymentDate">Data de Pagamento da Taxa de Matrícula:</label>
                     <input type="date" name="tax_paymentDate" id="tax_paymentDate"/>
                 </div>
+                <div>
+                    <label for="installment_tax">Quantidade de Parcelas da Taxa de Matrícula:</label>
+                    <input type="number" name="installment_tax" id="installment_tax"/>
+                </div>
             </div>            
-        </div>
-        
-        <!-- Informações WizPen -->
-        <div class="wizPen_information">
-        <h3>WizPen</h3>
-            <div class="wizPen_information1">
-                <div>
-                    <label for="wizPen_price">Valor da WizPen:</label>
-                    <input type="number" name="wizPen_price" id="wizPen_price"/>
-                </div>
-                <div>
-                    <label for="wizPen_paymentMethod">Forma de Pagamento da WizPen:</label>
-                    <select name="wizPen_paymentMethod" id="wizPen_paymentMethod">
-                        <option value="credit_card_wizPen">Cartão de Crédito</option>
-                        <option value="debit_card_wizPen">Cartão de Débito</option>
-                        <option value="ticket_wizPen">Boleto</option>
-                        <option value="pix_wizPen">Pix</option>
-                    </select>
-                </div>
-            </div>
-            <div class="wizPen_information2">
-                <div>
-                    <label for="wizPen_paymentDate">Data de Pagamento da WizPen:</label>
-                    <input type="date" name="wizPen_paymentDate" id="wizPen_paymentDate"/>
-                </div>
-            </div>          
         </div>
 
         <!-- Botões -->
@@ -182,6 +161,80 @@
             <input type="reset" value="Limpar Formulário">
         </div>  
     </form>
+
+        <!-- Enviar os dados do formulário para o Banco de Dados -->
+
+        <script>
+                // Pega a Class do formulário que está cadastrada como "newstudent_register" no HTML e adiciona o event lister (ativado quando clicar no botão) para enviar para o MySQL
+                document.querySelector(".newstudent_register").addEventListener("submit", async function(event) {
+                
+                // impede que o formulário recarregue a página ao ser enviado. Isso é necessário porque queremos enviar os dados via AJAX (Fetch API) sem recarregar a página.
+                event.preventDefault();
+
+                // Captura os valores que o usuário digitou nos campos de entrada (<input>) do formulário:
+                const nome_aluno = document.getElementById("name").value;
+                const responsavel_financeiro = document.getElementById("financial_responser").value;
+                const numero_matricula = document.getElementById("register_number").value;
+                const unidade = document.getElementById("unity").value;
+                const material_didatico = document.getElementById("book_name").value;
+                const valor_material_didatico = document.getElementById("book_price").value;
+                const parcelas_material_didatico = document.getElementById("installment_book").value;
+                const forma_pagamento_material_didatico = document.getElementById("book_paymentMethod").value;
+                const data_inicio_pagamento_material_didatico = document.getElementById("book_paymentDate").value;
+                const valor_do_modulo = document.getElementById("class_price").value;
+                const parcelas_modulo = document.getElementById("installment_class").value;
+                const forma_pagamento_modulo = document.getElementById("class_paymentMethod").value;
+                const data_inicio_pagamento_modulo = document.getElementById("class_paymentDate").value;
+                const taxa_matricula = document.getElementById("tax_price").value;
+                const forma_pagamento_taxa_matricula = document.getElementById("tax_paymentMethod").value;
+                const data_pagamento_taxa_matricula = document.getElementById("tax_paymentDate").value;  
+                const parcelas_taxa_matricula = document.getElementById("installment_tax").value;           
+                
+                try {
+                // Usa a Fetch API para enviar os dados ao servidor Node.js na rota
+                const response = await fetch("http://localhost:3000/cadastrar", {
+
+                    // Define que a requisição HTTP será do tipo POST (enviar dados). Configura o cabeçalho (headers) da requisição para indicar que os dados serão enviados no formato JSON.
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+
+                    // Converte os dados em um JSON antes de enviá-los ao servidor.
+                    body: JSON.stringify({ 
+                            nome_aluno, 
+                            numero_matricula, 
+                            responsavel_financeiro, 
+                            unidade,
+                            material_didatico,
+                            valor_material_didatico,
+                            parcelas_material_didatico,
+                            forma_pagamento_material_didatico,
+                            data_inicio_pagamento_material_didatico,
+                            valor_do_modulo,
+                            parcelas_modulo,
+                            forma_pagamento_modulo,
+                            data_inicio_pagamento_modulo,
+                            taxa_matricula,
+                            forma_pagamento_taxa_matricula,
+                            data_pagamento_taxa_matricula, 
+                            parcelas_taxa_matricula                        
+                         })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP! Status: ${response.status}`);
+                }
+                
+                // Aguarda (await) a resposta do servidor e converte o JSON de resposta em um objeto JavaScript para poder ser utilizado no código.
+                const result = await response.json();
+                
+                // Exibe uma mensagem de sucesso ou erro para o usuário.
+                alert(result.message);
+             } catch (error) {
+                console.error("Erro ao cadastrar aluno:", error);
+                alert("Erro ao cadastrar aluno. Tente novamente.");
+                }
+                });
+        </script>
 
 </body>
 </html>

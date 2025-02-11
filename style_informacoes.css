@@ -1,0 +1,211 @@
+/* Geral */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    transition: 0.4s;
+}
+
+/* Título da Empresa */
+
+h1 {
+    position: absolute; /* Define uma posição absoluta em relação ao contêiner pai */
+    top: 15px;
+    left: 20px;
+    border: 1px solid black;
+    border-radius: 7px;
+    width: 225px;
+    text-align: center;
+    padding: 3px;
+    font-size: 3.0ch;
+}
+
+/* Título do Programa */
+
+h2 {
+    position: relative; /* Mantém o fluxo normal */
+    margin:10px auto 10px auto; /* Define o espaçamento abaixo */
+    left: 0; /* Remove o alinhamento absoluto */
+    top: 0; /* Remove a fixação ao topo */
+    transform: none; /* Remove transformações */
+    text-align: center;
+    width: fit-content; /* Ajusta a largura ao conteúdo */
+    border: 1px solid black;
+    padding: 5px 60px;
+    border-radius: 7px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    font-size: 3.7ch;
+}
+
+
+/* ------------------------------------------------ */
+/* Navbar */
+
+.navbar {
+    position: absolute; /* Fixa no canto da página */
+    left: 20px; /* Fixa à esquerda */
+    top: 70px; /* Define o distanciamento do topo */
+    width: 190px; /* Define a largura da barra */
+    background-color: #c0bbbb; /* Cor de fundo da barra */
+    padding: 15px; /* Espaçamento interno da barra */
+    border-radius: 7px; /* Arredonda as bordas*/
+    height: 112vh; /* Faz a barra de fundo ocupar toda a altura da página */
+}
+
+.navbar li {
+    margin-bottom: 20px; /* Espaçamento entre os itens */
+}
+
+.navbar a {
+    display: block; /* Faz o link ocupar toda a largura do item */
+    color: white; /* Define a cor do texto */
+    background-color: #095fbb; /* Define a cor de fundo dos "botões" */
+    padding: 10px; /* Espaçamento interno dos "botões" */
+    border-radius: 5px; /* Arredonda as bordas dos "botões" */
+    text-align: center; /* Centraliza o texto dentro dos "botões" */
+}
+
+.navbar a:hover {
+    background-color: #1d74d1; /* Nova cor ao passar o mouse */
+}
+
+/* ---------------------------------------- */
+
+/* Informações financeiras */
+
+.informacoes_financeiras {
+    position: absolute; /* Mantém a posição absoluta */
+    top: 70px;
+    left: 250px;
+    display: flex; /* Coloca as sections lado a lado */
+    gap: 50px; /* Espaçamento entre as sections */
+    align-items: flex-start; /* Alinha os elementos pelo topo */
+    flex-wrap: wrap; /* Permite que quebrem de linha caso necessário */
+}
+
+.informacoes_financeiras section {
+    width: 30%; /* Define uma largura fixa para cada section */
+    min-width: 300px; /* Evita que fiquem muito pequenas */
+}
+
+/* Estilo geral da tabela */
+table {
+    width: 100%; /* Largura total da tabela */
+    border-collapse: collapse; /* Remove espaços entre as células */
+    margin: 20px 0; /* Margem externa */
+    font-family: Arial, sans-serif; /* Fonte */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 10px; /* Bordas arredondadas */
+    overflow: hidden; /* Esconde bordas arredondadas nas células */
+}
+
+/* Estilo do cabeçalho da tabela */
+thead {
+    background-color: #007BFF; /* Cor de fundo do cabeçalho */
+    color: white; /* Cor do texto */
+}
+
+/* Estilo das células do cabeçalho */
+th {
+    padding: 15px; /* Espaçamento interno */
+    text-align: left; /* Alinhamento do texto */
+    font-weight: bold; /* Texto em negrito */
+    text-transform: uppercase; /* Transforma texto em maiúsculas */
+    font-size: 14px; /* Tamanho da fonte */
+}
+
+/* Estilo das células do corpo da tabela */
+td {
+    padding: 12px; /* Espaçamento interno */
+    text-align: left; /* Alinhamento do texto */
+    border-bottom: 1px solid #ddd; /* Borda inferior */
+    font-size: 14px; /* Tamanho da fonte */
+}
+
+/* Efeito de hover nas linhas da tabela */
+tbody tr:hover {
+    background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
+    transition: background-color 0.3s ease; /* Transição suave */
+}
+
+/* Estilo para linhas alternadas (zebrado) */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Cor de fundo para linhas pares */
+}
+
+/* Estilo para a primeira coluna (se necessário) */
+td:first-child {
+    font-weight: bold; /* Texto em negrito */
+}
+
+/* Estilo para a última linha (total) */
+tfoot {
+    background-color: #007BFF; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    font-weight: bold; /* Texto em negrito */
+}
+
+/* Estilo para células do rodapé */
+tfoot td {
+    padding: 15px; /* Espaçamento interno */
+}
+
+
+/* --------------------------------------- */
+
+/* Estilo faturamento total Previsto */
+
+.faturamento-container {
+    text-align: center;
+    background-color: #f8f9fa; /* Cor de fundo suave */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    width: 300px;
+    margin: 20px auto; /* Centraliza o bloco */
+}
+
+.faturamento-container h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#totalValor {
+    font-size: 25px;
+    color: white; /* Verde para destacar valores positivos */
+    background-color: #007BFF; /* Fundo levemente esverdeado */
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#totalValorMaterial {
+    font-size: 25px;
+    color: white; /* Verde para destacar valores positivos */
+    background-color: #007BFF; /* Fundo levemente esverdeado */
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#totalValorModulo {
+    font-size: 25px;
+    color: white; /* Verde para destacar valores positivos */
+    background-color: #007BFF; /* Fundo levemente esverdeado */
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}

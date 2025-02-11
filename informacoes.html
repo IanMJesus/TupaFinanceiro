@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações Financeiras</title>
+    <link rel="stylesheet" href="css/style_informacoes.css">
+</head>
+<body>
+
+    <h1>Tupã Company</h1>
+    
+    <h2>Informações Financeiras</h2>
+
+    <!-- Barra de Navegação -->
+    <nav class = "navbar">
+        <ul>
+            <li><a href="http://127.0.0.1:5500/index.html#">Cadastro de Alunos</a></li>
+            <li><a href="http://127.0.0.1:5500/lista_alunos.html">Lista de Alunos</a></li>
+            <li><a href="http://127.0.0.1:5500/informacoes.html">Informações Financeiras</a></li>
+            <li><a href="http://127.0.0.1:5500/cadastro_faturamento.html">Cadastro de Faturamento</a></li>
+            <li><a href="http://127.0.0.1:5500/lista_faturamento.html">Lista de Faturamento</a></li>
+        </ul>     
+   </nav>
+
+   <div class="informacoes_financeiras">
+   
+    <!-- Calcula o Total Arrecado com Material Didático + Módulo + Taxa de matrícula -->
+    
+    <section id="totalarrecadado">
+    <div class="faturamento-container">
+    <h3>Faturamento Total:</h3>
+    <p id="totalValor">Carregando...</p>
+    </div>
+
+    <script>
+        async function carregarTotal() {
+            try {
+                console.log("Iniciando fetch...");
+                const response = await fetch("http://localhost:3000/total-total");
+                console.log("Resposta recebida:", response);
+
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar total");
+                }
+
+                const data = await response.json();
+                console.log("Dados recebidos:", data);
+
+                // Converte o valor total para número
+                const total = parseFloat(data.total_tudo);
+                if (!isNaN(total)) {
+                    document.getElementById("totalValor").textContent = `R$ ${total.toFixed(2)}`;
+                } else {
+                    throw new Error("Total inválido ou não encontrado");
+                }
+            } catch (error) {
+                console.error(error);
+                document.getElementById("totalValor").textContent = "Erro ao carregar total.";
+            }
+        }
+
+    </script>
+
+
+    <!-- Exibe o Faturamento total por mês do módulo + Material + taxa de matrícula -->
+
+    <table id="tabelaFaturamentoTotal">
+        <thead>
+            <tr>
+                <th>Mês</th>
+                <th>Faturamento (R$)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="2">Carregando...</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <script>
+        async function carregarFaturamentoMensal() {
+            try {
+                console.log("Iniciando fetch...");
+                const response = await fetch("http://localhost:3000/faturamento-mensal-total");
+                console.log("Resposta recebida:", response);
+    
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar faturamento mensal");
+                }
+    
+                const data = await response.json();
+                console.log("Dados recebidos:", data);
+    
+                const tabelaBody = document.querySelector("#tabelaFaturamentoTotal tbody");
+                tabelaBody.innerHTML = ""; // Limpa qualquer conteúdo anterior
+    
+                if (Object.keys(data).length === 0) {
+                    tabelaBody.innerHTML = "<tr><td colspan='2'>Nenhum dado disponível</td></tr>";
+                    return;
+                }
+    
+                Object.entries(data).forEach(([mesAno, faturamento]) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `<td>${mesAno}</td><td>R$ ${faturamento.toFixed(2)}</td>`;
+                    tabelaBody.appendChild(row);
+                });
+    
+            } catch (error) {
+                console.error(error);
+                document.querySelector("#tabelaFaturamentoTotal tbody").innerHTML = 
+                    "<tr><td colspan='2'>Erro ao carregar dados</td></tr>";
+            }
+        }
+    
+    </script>
+    </section>
+
+    
+    <!-- Calcula o Total Arrecado com Material Didático -->
+    
+    <section id="totalArrecadadoMaterial">
+    <div class="faturamento-container">
+    <h3>Faturamento Material Didático:</h3>
+    <p id="totalValorMaterial">Carregando...</p>
+    </div>
+
+    <script>
+        async function carregarTotal_Material() {
+            try {
+                console.log("Iniciando fetch...");
+                const response = await fetch("http://localhost:3000/total-material-didatico");
+                console.log("Resposta recebida:", response);
+
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar total");
+                }
+
+                const data = await response.json();
+                console.log("Dados recebidos:", data);
+
+                // Converte o valor total para número
+                const total = parseFloat(data.total);
+                if (!isNaN(total)) {
+                    document.getElementById("totalValorMaterial").textContent = `R$ ${total.toFixed(2)}`;
+                } else {
+                    throw new Error("Total inválido ou não encontrado");
+                }
+            } catch (error) {
+                console.error(error);
+                document.getElementById("totalValorMaterial").textContent = "Erro ao carregar total.";
+            }
+        }
+
+    </script>
+
+        <!-- Calcula o faturamento mensal em material didático -->
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Mês</th>
+                <th>Faturamento (R$)</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaFaturamento"></tbody>
+    </table>
+
+    <script>
+        async function carregarFaturamento() {
+            try {
+                const response = await fetch("http://localhost:3000/faturamento-mensal");
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar faturamento");
+                }
+
+                const dados = await response.json();
+                const tabela = document.getElementById("tabelaFaturamento");
+
+                tabela.innerHTML = ""; // Limpa a tabela antes de preencher
+
+                dados.forEach(linha => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${linha.mes}</td>
+                        <td>R$ ${parseFloat(linha.faturamento).toFixed(2)}</td>
+                    `;
+                    tabela.appendChild(row);
+                });
+            } catch (error) {
+                console.error(error);
+                alert("Erro ao carregar faturamento.");
+            }
+        }
+        
+    </script>
+    </section>
+
+    <!-- Calcula o Total Arrecado com o Módulo de Aulas -->
+        
+        <section id="totalArrecadadoModulo">
+        <div class="faturamento-container">
+        <h3>Faturamento Módulo de Aulas:</h3>
+        <p id="totalValorModulo">Carregando...</p>
+        </div>
+    
+
+    <script>
+        async function carregarTotal_Modulo() {
+            try {
+                console.log("Iniciando fetch...");
+                const response = await fetch("http://localhost:3000/total-modulo");
+                console.log("Resposta recebida:", response);
+
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar total");
+                }
+
+                const data = await response.json();
+                console.log("Dados recebidos:", data);
+
+                // Converte o valor total para número
+                const total = parseFloat(data.total);
+                if (!isNaN(total)) {
+                    document.getElementById("totalValorModulo").textContent = `R$ ${total.toFixed(2)}`;
+                } else {
+                    throw new Error("Total inválido ou não encontrado");
+                }
+            } catch (error) {
+                console.error(error);
+                document.getElementById("totalValorModulo").textContent = "Erro ao carregar total.";
+            }
+        }
+
+    </script>
+    
+
+    <!-- Calcula o faturamento mensal em módulo de aulas -->
+
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Mês</th>
+                <th>Faturamento (R$)</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaFaturamentoModulo"></tbody>
+    </table>
+
+    <script>
+        async function carregarFaturamentoModulo() {
+            try {
+                const response = await fetch("http://localhost:3000/faturamento-mensal-modulo");
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar faturamento");
+                }
+
+                const dados = await response.json();
+                const tabela = document.getElementById("tabelaFaturamentoModulo");
+
+                tabela.innerHTML = ""; // Limpa a tabela antes de preencher
+
+                dados.forEach(linha => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${linha.mes}</td>
+                        <td>R$ ${parseFloat(linha.faturamento_modulo).toFixed(2)}</td>
+                    `;
+                    tabela.appendChild(row);
+                });
+            } catch (error) {
+                console.error(error);
+                alert("Erro ao carregar faturamento.");
+            }
+        }
+        
+    </script>
+    </section>
+   
+
+
+        <!-- Chama as duas funções ao carregar a página e exibe as informações -->
+    <script>
+        window.onload = function() {
+            carregarTotal_Material();
+            carregarFaturamento();
+            carregarTotal_Modulo();
+            carregarFaturamentoModulo();
+            carregarTotal();
+            carregarFaturamentoMensal();
+        };
+    </script>
+
+</div> 
+</body>
+</html>

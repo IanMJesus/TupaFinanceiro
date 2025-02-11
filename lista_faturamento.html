@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Faturamento</title>
+    <link rel="stylesheet" href="css/style_listaFaturamento.css">
+</head>
+<body>
+
+    <h1>Tupã Company</h1>
+    
+    <h2>Lista de Faturamento</h2>
+    
+    <!-- Barra de Navegação -->
+    <nav class = "navbar">
+        <ul>
+            <li><a href="http://127.0.0.1:5500/index.html#">Cadastro de Alunos</a></li>
+            <li><a href="http://127.0.0.1:5500/lista_alunos.html">Lista de Alunos</a></li>
+            <li><a href="http://127.0.0.1:5500/informacoes.html">Informações Financeiras</a></li>
+            <li><a href="http://127.0.0.1:5500/cadastro_faturamento.html">Cadastro de Faturamento</a></li>
+            <li><a href="http://127.0.0.1:5500/lista_faturamento.html">Lista de Faturamento</a></li>
+        </ul>     
+   </nav>
+
+   <div class="lista_de_faturamento"> 
+   
+    <!-- Função para exibir os faturamento -->
+
+     <script>
+         async function carregarFaturamento() {
+             try {
+                 const response = await fetch("http://localhost:3000/faturamentos"); // Faz requisição GET
+                 if (!response.ok) {
+                     throw new Error("Erro ao buscar alunos");
+                 }
+     
+                 const faturamentos = await response.json(); // Converte a resposta para JSON
+                 const listaFaturamentos = document.getElementById("listaFaturamentos");
+     
+                 listaFaturamentos.innerHTML = ""; // Limpa a lista antes de preencher
+ 
+                  // Mapeamento dos valores para exibição
+             const formasPagamento = {
+                "credit_card_billing": "Cartão",
+                "ticket_billing": "Boleto",
+                "pix_billing": "Pix",
+                "money_billing": "Dinheiro"
+             };
+     
+             faturamentos.forEach(faturamento => {
+                     const row = document.createElement("tr");
+ 
+                  // Formata os valores monetários para o formato "R$ 1.000,00"
+                  const formatarMoeda = valor => {
+                     return Number(valor).toLocaleString("pt-BR", {
+                         style: "currency",
+                         currency: "BRL"
+                     });
+                 };
+ 
+                 // Função para formatar datas (de yyyy-mm-dd para dd/mm/yyyy)
+             const formatarData = data => {
+                 if (!data) return ""; // Se a data for nula ou indefinida, retorna vazio
+                 const dataObj = new Date(data);
+                 return dataObj.toLocaleDateString("pt-BR"); // Converte para dd/mm/yyyy
+             };
+ 
+                 row.innerHTML = `
+                 <td>${formatarData(faturamento.data_pagamento)}</td>
+                 <td>${faturamento.numero_matricula}</td>
+                 <td>${faturamento.nome_aluno}</td>                    
+                 <td>${faturamento.unidade}</td>
+                 <td>${faturamento.motivo_faturamento}</td>
+                 <td>${faturamento.forma_pagamento}</td>
+                 <td>${formatarMoeda(faturamento.valor_faturamento)}</td>
+                 <td>${faturamento.quantidade_parcelas}</td>
+                 `;
+                    listaFaturamentos.appendChild(row);
+                 });
+             } catch (error) {
+                 console.error(error);
+                 alert("Erro ao carregar alunos.");
+             }
+         }
+     
+         // Chama a função automaticamente ao carregar a página
+         window.onload = carregarFaturamento;
+     </script>
+ 
+     <table border="1">
+         <thead>
+             <tr>
+                 <th>Data</th>
+                 <th>Matrícula</th>
+                 <th>Nome Aluno</th>
+                 <th>Unidade</th>
+                 <th>Motivo</th>
+                 <th>Forma Pagamento</th>
+                 <th>Valor</th>
+                 <th>Parcelas</th>
+             </tr>
+         </thead>
+         <tbody id="listaFaturamentos"></tbody>
+     </table>
+
+</body>
+</html>

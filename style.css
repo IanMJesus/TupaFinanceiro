@@ -59,7 +59,7 @@ h2 {
     background-color: #c0bbbb; /* Cor de fundo da barra */
     padding: 15px; /* Espaçamento interno da barra */
     border-radius: 7px; /* Arredonda as bordas*/
-    height: 132vh; /* Faz a barra de fundo ocupar toda a altura da página */
+    height: 112vh; /* Faz a barra de fundo ocupar toda a altura da página */
 }
 
 .navbar li {
@@ -143,7 +143,7 @@ h3 {
     display: flex; /* Ativa o Flexbox */
     flex-direction: column; /* Empilha os elementos verticalmente */
     gap: 10px; /* Espaçamento entre as seções */
-    width: 95%; /* Define largura máxima do contêiner */
+    width: 100%; /* Define largura máxima do contêiner */
     padding: 20px; /* Adiciona espaçamento interno */
     border: 1px solid black; /* Adiciona uma borda */
     border-radius: 10px; /* Bordas arredondadas */
@@ -183,7 +183,7 @@ font-size: 0.8rem; /* Tamanho da fonte */
     display: flex; /* Ativa o Flexbox */
     flex-direction: column; /* Empilha os elementos verticalmente */
     gap: 10px; /* Espaçamento entre as seções */
-    width: 95%; /* Define largura máxima do contêiner */
+    width: 100%; /* Define largura máxima do contêiner */
     padding: 20px; /* Adiciona espaçamento interno */
     border: 1px solid black; /* Adiciona uma borda */
     border-radius: 10px; /* Bordas arredondadas */
@@ -222,7 +222,7 @@ font-size: 0.8rem; /* Tamanho da fonte */
     display: flex; /* Ativa o Flexbox */
     flex-direction: column; /* Empilha os elementos verticalmente */
     gap: 10px; /* Espaçamento entre as seções */
-    width: 95%; /* Define largura máxima do contêiner */
+    width: 100%; /* Define largura máxima do contêiner */
     padding: 20px; /* Adiciona espaçamento interno */
     border: 1px solid black; /* Adiciona uma borda */
     border-radius: 10px; /* Bordas arredondadas */
@@ -254,44 +254,7 @@ font-size: 0.8rem; /* Tamanho da fonte */
 }
 
 
-/* Informações Wiz Pen */
-.wizPen_information {
-    display: flex; /* Ativa o Flexbox */
-    flex-direction: column; /* Empilha os elementos verticalmente */
-    gap: 10px; /* Espaçamento entre as seções */
-    width: 95%; /* Define largura máxima do contêiner */
-    padding: 20px; /* Adiciona espaçamento interno */
-    border: 1px solid black; /* Adiciona uma borda */
-    border-radius: 10px; /* Bordas arredondadas */
-    background-color: #f9f9f9; /* Fundo leve */
-    margin-bottom: 5px;
-}
 
-    /* Estilo do título */
-.wizPen_information h3 {
-        margin-bottom: 10px; /* Espaçamento abaixo do título */
-}
-
-    /* Contêiner para cada linha com dois elementos */
-.wizPen_information div {
-display: flex; /* Usa Flexbox para posicionar os itens lado a lado */
-justify-content: space-between; /* Espaçamento entre os campos */
-align-items: center; /* Alinha os itens verticalmente */
-gap: 10px; /* Espaçamento entre os campos na mesma linha */
-}
-
-    /* Estilo dos inputs e selects */
-.wizPen_information input,
-.wizPen_information select {
-flex: 1; /* Faz os campos ocuparem o mesmo espaço */
-padding: 5px; /* Espaçamento interno */
-border: 1px solid #201d1dbb; /* Borda dos campos */
-border-radius: 5px; /* Bordas arredondadas */
-font-size: 0.8rem; /* Tamanho da fonte */
-}
-
-
-/*  */
 /*  */
 
 /* Design dos Botões de Cadastrar e Limpar Formulário */

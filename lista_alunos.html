@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alunos</title>
+    <link rel="stylesheet" href="css/style_listaAlunos.css">
+</head>
+<body>
+
+    <h1>Tupã Company</h1>
+    
+    <h2>Lista de Alunos</h2>
+    
+    <!-- Barra de Navegação -->
+    <nav class = "navbar">
+        <ul>
+            <li><a href="http://127.0.0.1:5500/index.html#">Cadastro de Alunos</a></li>
+            <li><a href="http://127.0.0.1:5500/lista_alunos.html">Lista de Alunos</a></li>
+            <li><a href="http://127.0.0.1:5500/informacoes.html">Informações Financeiras</a></li>
+            <li><a href="http://127.0.0.1:5500/cadastro_faturamento.html">Cadastro de Faturamento</a></li>
+            <li><a href="http://127.0.0.1:5500/lista_faturamento.html">Lista de Faturamento</a></li>
+        </ul>     
+   </nav>    
+    
+    
+    <div class="lista_de_alunos"> 
+   
+   <!-- Função para exibir os alunos na página -->
+    <script>
+        async function carregarAlunos() {
+            try {
+                const response = await fetch("http://localhost:3000/alunos"); // Faz requisição GET
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar alunos");
+                }
+    
+                const alunos = await response.json(); // Converte a resposta para JSON
+                const listaAlunos = document.getElementById("listaAlunos");
+    
+                listaAlunos.innerHTML = ""; // Limpa a lista antes de preencher
+
+                 // Mapeamento dos valores para exibição
+            const formasPagamento = {
+                "credit_card_book": "Cartão",
+                "ticket_book": "Boleto",
+                "pix_book": "Pix",
+                "money_book": "Dinheiro",
+                "credit_card_class": "Cartão",
+                "ticket_class": "Boleto",
+                "pix_class": "Pix",
+                "money_class": "Dinheiro",
+                "credit_card_tax": "Cartão",
+                "ticket_tax": "Boleto",
+                "pix_tax": "Pix",
+                "money_tax": "Dinheiro"
+            };
+    
+                alunos.forEach(aluno => {
+                    const row = document.createElement("tr");
+
+                 // Formata os valores monetários para o formato "R$ 1.000,00"
+                 const formatarMoeda = valor => {
+                    return Number(valor).toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL"
+                    });
+                };
+
+                // Função para formatar datas (de yyyy-mm-dd para dd/mm/yyyy)
+            const formatarData = data => {
+                if (!data) return ""; // Se a data for nula ou indefinida, retorna vazio
+                const dataObj = new Date(data);
+                return dataObj.toLocaleDateString("pt-BR"); // Converte para dd/mm/yyyy
+            };
+
+                row.innerHTML = `
+                <td>${aluno.numero_matricula}</td>
+                <td>${aluno.nome_aluno}</td>                    
+                <td>${aluno.responsavel_financeiro}</td>
+                <td>${aluno.unidade}</td>
+                <td>${aluno.material_didatico}</td>
+                <td>${formatarMoeda(aluno.valor_material_didatico)}</td> 
+                <td>${aluno.parcelas_material_didatico}</td>
+                <td>${formasPagamento[aluno.forma_pagamento_material_didatico] || aluno.forma_pagamento_material_didatico}</td>
+                <td>${formatarData(aluno.data_inicio_pagamento_material_didatico)}</td>
+                <td>${formatarMoeda(aluno.valor_do_modulo)}</td>
+                <td>${aluno.parcelas_modulo}</td>
+                <td>${formatarData(aluno.data_inicio_pagamento_modulo)}</td>
+                <td>${formasPagamento[aluno.forma_pagamento_modulo] || aluno.forma_pagamento_modulo}</td>
+                <td>${formatarMoeda(aluno.taxa_matricula)}</td>
+                <td>${formasPagamento[aluno.forma_pagamento_taxa_matricula] || aluno.forma_pagamento_taxa_matricula}</td>
+                <td>${formatarData(aluno.data_pagamento_taxa_matricula)}</td>
+                <td>${aluno.parcelas_taxa_matricula}</td>
+                `;
+                    listaAlunos.appendChild(row);
+                });
+            } catch (error) {
+                console.error(error);
+                alert("Erro ao carregar alunos.");
+            }
+        }
+    
+        // Chama a função automaticamente ao carregar a página
+        window.onload = carregarAlunos;
+    </script>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Matrícula</th>
+                <th>Nome</th>
+                <th>Resp. Financeiro</th>
+                <th>Unidade</th>
+                <th>Material Didático (MD)</th>
+                <th>Valor MD</th>
+                <th>Parcelas MD</th>
+                <th>Forma de Pagamento MD</th>
+                <th>Data Início Pag. MD</th>
+                <th>Valor Módulo (MA)</th>
+                <th>Parcelas MA</th>
+                <th>Data Início Pag. MA</th>
+                <th>Forma de Pagamento MA</th>
+                <th>Valor Taxa Mat. (TM)</th>
+                <th>Forma de Pagamento TM</th>
+                <th>Data Início Pag. TM</th>
+                <th>Parcelas TM</th>
+            </tr>
+        </thead>
+        <tbody id="listaAlunos"></tbody>
+    </table>
+
+</div>
+</body>
+</html>

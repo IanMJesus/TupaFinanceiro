@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Faturamento</title>
+    <link rel="stylesheet" href="css/style_cadastroFaturamento.css">
+</head>
+<body>
+
+    <h1>Tupã Company</h1>
+    
+    <h2>Cadastro de Faturamento</h2>
+    
+    <!-- Barra de Navegação -->
+    <nav class = "navbar">
+        <ul>
+            <li><a href="http://127.0.0.1:5500/index.html#">Cadastro de Alunos</a></li>
+            <li><a href="http://127.0.0.1:5500/lista_alunos.html">Lista de Alunos</a></li>
+            <li><a href="http://127.0.0.1:5500/informacoes.html">Informações Financeiras</a></li>
+            <li><a href="http://127.0.0.1:5500/cadastro_faturamento.html">Cadastro de Faturamento</a></li>
+            <li><a href="http://127.0.0.1:5500/lista_faturamento.html">Lista de Faturamento</a></li>
+        </ul>     
+   </nav>
+   
+   <!-- Cadastro de Faturamento -->
+
+<form class="informacoes-faturamento">
+
+<div class="cadastro_faturamento">
+    <h3>Cadastro de Faturamento</h3>
+
+   <div id="informacoes1">
+
+        <label for="name">Nome do Aluno:</label>
+        <input type="text" name="name" id="name"/>
+  
+        <label for="register_number">Número de Matrícula:</label>
+        <input type="number" name="register_number" id="register_number"/>
+
+        <label for="unity">Unidade:</label>
+        <select name="unity" id="unity">
+            <option value="Padua">Santo Antônio de Pádua</option>
+            <option value="Miracema">Miracema</option>
+            <option value="Pirapetinga">Pirapetinga</option>
+        </select>
+
+    </div>
+
+    <div id="informacoes2">
+
+        <label for="billing_category">Motivo do Faturamento:</label>
+        <select name="billing_category" id="billing_category" onchange="verificarOpcao()">
+            <option value="Wiz Pen">WizPen</option>
+            <option value="Inadimplência">Inadimplencia</option>
+            <option value="Outro">Outro</option>
+        </select>
+
+         <!-- Adicionar a função outro no select anterior e aparecer um campo para descrever -->
+
+        <input type="text" id="campoOutro" placeholder="Digite" style="display: none;">
+ 
+    <script>
+        function verificarOpcao() {
+            var select = document.getElementById("billing_category"); // Seleciona o dropdown correto
+            var campoOutro = document.getElementById("campoOutro");
+
+            if (select.value === "Outro") {
+                campoOutro.style.display = "inline"; // Mostra o campo de texto
+            } else {
+                campoOutro.style.display = "none"; // Esconde o campo de texto
+            }
+        }
+    </script>
+
+        <label for="billing_paymentMethod">Forma de Pagamento do Faturamento:</label>
+        <select name="billing_paymentMethod" id="billing_paymentMethod">
+            <option value="credit_card_billing">Cartão de Crédito</option>
+            <option value="ticket_billing">Boleto</option>
+            <option value="pix_billing">Pix</option>
+            <option value="money_billing">Dinheiro</option>
+        </select>
+
+    </div>
+    
+        
+        <!-- ----------------------------- -->
+
+    <div id="informacoes2">  
+
+        <label for="billing_price">Valor do Faturamento:</label>
+        <input type="number" name="billing_price" id="billing_price"/>
+
+        <label for="installment_billing">Quantidade de Parcelas:</label>
+        <input type="number" name="installment_billing" id="installment_billing"/>
+
+        <label for="billing_paymentDate">Data de Início do Pagamento:</label>
+        <input type="date" name="billing_paymentDate" id="billing_paymentDate"/>
+
+
+    </div>
+
+</div>
+
+        <input type="submit" value="Cadastrar">
+        <input type="reset" value="Limpar Formulário"> 
+
+</form>
+
+<!-- Enviar os dados do formulário para o Banco de Dados -->
+
+<script>
+    // Pega a Class do formulário que está cadastrada como "newstudent_register" no HTML e adiciona o event lister (ativado quando clicar no botão) para enviar para o MySQL
+    document.querySelector(".informacoes-faturamento").addEventListener("submit", async function(event) {
+    
+    // impede que o formulário recarregue a página ao ser enviado. Isso é necessário porque queremos enviar os dados via AJAX (Fetch API) sem recarregar a página.
+    event.preventDefault();
+
+    // Captura os valores que o usuário digitou nos campos de entrada (<input>) do formulário:
+    const nome_aluno = document.getElementById("name").value;
+    const numero_matricula = document.getElementById("register_number").value;
+    const unidade = document.getElementById("unity").value;
+    const motivo_faturamento = document.getElementById("billing_category").value;
+    const valor_faturamento = document.getElementById("billing_price").value;
+    const quantidade_parcelas = document.getElementById("installment_billing").value;
+    const data_pagamento = document.getElementById("billing_paymentDate").value;
+    const forma_pagamento = document.getElementById("billing_paymentMethod").value;
+    
+           
+    try {
+    // Usa a Fetch API para enviar os dados ao servidor Node.js na rota
+    const response = await fetch("http://localhost:3000/cadastrar-faturamento", {
+
+        // Define que a requisição HTTP será do tipo POST (enviar dados). Configura o cabeçalho (headers) da requisição para indicar que os dados serão enviados no formato JSON.
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+
+        // Converte os dados em um JSON antes de enviá-los ao servidor.
+        body: JSON.stringify({ 
+                nome_aluno, 
+                numero_matricula, 
+                unidade,
+                motivo_faturamento,
+                valor_faturamento,
+                quantidade_parcelas,
+                data_pagamento,  
+                forma_pagamento            
+             })
+    });
+    
+    if (!response.ok) {
+        throw new Error(`Erro HTTP! Status: ${response.status}`);
+    }
+    
+    // Aguarda (await) a resposta do servidor e converte o JSON de resposta em um objeto JavaScript para poder ser utilizado no código.
+    const result = await response.json();
+    
+    // Exibe uma mensagem de sucesso ou erro para o usuário.
+    alert(result.message);
+ } catch (error) {
+    console.error("Erro ao cadastrar faturamento:", error);
+    alert("Erro ao cadastrar faturamento. Tente novamente.");
+    }
+    });
+
+</script>
+</body>
+</html>

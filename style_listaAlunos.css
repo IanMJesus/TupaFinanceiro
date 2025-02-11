@@ -1,0 +1,152 @@
+/* Geral */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    transition: 0.4s;
+}
+
+/* Título da Empresa */
+
+h1 {
+    position: absolute; /* Define uma posição absoluta em relação ao contêiner pai */
+    top: 15px;
+    left: 20px;
+    border: 1px solid black;
+    border-radius: 7px;
+    width: 225px;
+    text-align: center;
+    padding: 3px;
+    font-size: 3.0ch;
+}
+
+/* Título do Programa */
+
+h2 {
+    position: relative; /* Mantém o fluxo normal */
+    margin:10px auto 10px auto; /* Define o espaçamento abaixo */
+    left: 0; /* Remove o alinhamento absoluto */
+    top: 0; /* Remove a fixação ao topo */
+    transform: none; /* Remove transformações */
+    text-align: center;
+    width: fit-content; /* Ajusta a largura ao conteúdo */
+    border: 1px solid black;
+    padding: 5px 60px;
+    border-radius: 7px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    font-size: 3.7ch;
+}
+
+
+/* ------------------------------------------------ */
+/* Navbar */
+
+.navbar {
+    position: absolute; /* Fixa no canto da página */
+    left: 20px; /* Fixa à esquerda */
+    top: 70px; /* Define o distanciamento do topo */
+    width: 190px; /* Define a largura da barra */
+    background-color: #c0bbbb; /* Cor de fundo da barra */
+    padding: 15px; /* Espaçamento interno da barra */
+    border-radius: 7px; /* Arredonda as bordas*/
+    height: 112vh; /* Faz a barra de fundo ocupar toda a altura da página */
+}
+
+.navbar li {
+    margin-bottom: 20px; /* Espaçamento entre os itens */
+}
+
+.navbar a {
+    display: block; /* Faz o link ocupar toda a largura do item */
+    color: white; /* Define a cor do texto */
+    background-color: #095fbb; /* Define a cor de fundo dos "botões" */
+    padding: 10px; /* Espaçamento interno dos "botões" */
+    border-radius: 5px; /* Arredonda as bordas dos "botões" */
+    text-align: center; /* Centraliza o texto dentro dos "botões" */
+}
+
+.navbar a:hover {
+    background-color: #1d74d1; /* Nova cor ao passar o mouse */
+}
+
+
+/* -------------------------------------- */
+
+/* Estilo tabela */
+
+.lista_de_alunos {
+    position: absolute; /* Mantém a posição absoluta */
+    top: 70px;
+    left: 250px;
+}
+
+/* Estilo geral da tabela */
+table {
+    width: 100%; /* Largura total da tabela */
+    border-collapse: collapse; /* Remove espaços entre as células */
+    margin: 20px 0; /* Margem externa */
+    font-family: Arial, sans-serif; /* Fonte */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 10px; /* Bordas arredondadas */
+    overflow: hidden; /* Esconde bordas arredondadas nas células */
+}
+
+/* Estilo do cabeçalho da tabela */
+thead {
+    background-color: #007BFF; /* Cor de fundo do cabeçalho */
+    color: white; /* Cor do texto */
+}
+
+/* Estilo das células do cabeçalho */
+th {
+    padding: 10px; /* Espaçamento interno */
+    text-align: center; /* Alinhamento do texto */
+    font-weight: bold; /* Texto em negrito */
+    text-transform: uppercase; /* Transforma texto em maiúsculas */
+    font-size: 12px; /* Tamanho da fonte */
+}
+
+/* Estilo das células do corpo da tabela */
+td {
+    padding: 12px; /* Espaçamento interno */
+    text-align: left; /* Alinhamento do texto */
+    border-bottom: 1px solid #ddd; /* Borda inferior */
+    font-size: 12px; /* Tamanho da fonte */
+}
+
+/* Efeito de hover nas linhas da tabela */
+tbody tr:hover {
+    background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
+    transition: background-color 0.3s ease; /* Transição suave */
+}
+
+/* Estilo para linhas alternadas (zebrado) */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Cor de fundo para linhas pares */
+}
+
+/* Estilo para a primeira coluna (se necessário) */
+td:first-child {
+    font-weight: bold; /* Texto em negrito */
+}
+
+/* Estilo para a última linha (total) */
+tfoot {
+    background-color: #007BFF; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    font-weight: bold; /* Texto em negrito */
+}
+
+/* Estilo para células do rodapé */
+tfoot td {
+    padding: 15px; /* Espaçamento interno */
+}
